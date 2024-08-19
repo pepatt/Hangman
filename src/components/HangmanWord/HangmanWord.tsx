@@ -1,14 +1,24 @@
-import React from 'react'
 import './HangmanWord.scss'
 
-function HangmanWord() {
-    const word = "test";
-    const guessedLetters = ["t", "e"];
+type HangmanWordProps = {
+    reveal?: boolean
+    guessedLetters: string[]
+    wordToGuess: string
+}
+
+function HangmanWord({reveal = false, guessedLetters, wordToGuess}: HangmanWordProps) {
   return (
     <div className='word'> 
-        {word.split("").map((letter, index) => (
+        {wordToGuess.split("").map((letter, index) => (
             <span className='word__letter' key={index} >
-                <span className= {`word__letter-${guessedLetters.includes(letter) ? `visible` : `hidden`}`}>{letter}</span>
+                <span style={{ color: 
+                    !guessedLetters.includes(letter) && reveal ? "red" : "black"
+                }} 
+                className= 
+                {`word__letter-${guessedLetters.includes(letter) || reveal ? `visible` : `hidden`}`}
+                >
+                    {letter}
+                </span>
             </span>
         ))} 
     </div>

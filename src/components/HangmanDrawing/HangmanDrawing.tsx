@@ -1,7 +1,11 @@
 import React from 'react'
 import './HangmanDrawing.scss'
 
-function HangmanDrawing() {
+type HangmanDrawingProps = {
+    numberOfGuesses: number;
+} 
+
+function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps ) {
     const HEAD = (
         <div className='HEAD'></div>
     )
@@ -24,14 +28,11 @@ function HangmanDrawing() {
         <div className='LEFT_LEG'></div>
     )
 
+    const BODY_PARTS = [HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG]
+
   return (
     <div className = 'drawing'>
-        {HEAD}
-        {BODY}
-        {RIGHT_ARM}
-        {LEFT_ARM}
-        {RIGHT_LEG}
-        {LEFT_LEG}
+        {BODY_PARTS.slice(0, numberOfGuesses)}
         <div className="drawing__hook"></div>
         <div className="drawing__top"></div>
         <div className="drawing__upright"></div>
